@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - 12
+
+services:
+  - docker
+  
+before_script: []
+
+script:
+  - docker --version
+  - docker build -f udagram-feed-api/Dockerfile -t  ayanf3d3v/udagram-feed-api:v1 udagram-feed-api
+  - docker build -f udagram-user-api/Dockerfile -t  ayanf3d3v/udagram-user-api:v1 udagram-user-api
+  - docker build -f udagram-frontend/Dockerfile -t  ayanf3d3v/udagram-frontend:v1 udagram-frontend
+  - docker build -f udagram-reverseproxy/Dockerfile -t  ayanf3d3v/udagram-reverse-proxy:v1 udagram-reverseproxy
+
+
+after_success:
+  - echo "$dockerhub-pass" | docker login -u "$dockerhub-username" --password-stdin
+  - docker push mmagnani/udagram-feed-api:latest
+  - docker push mmagnani/udagram-user-api:latest
+  - docker push mmagnani/udagram-frontend:latest
+  - docker push mmagnani/udagram-reverse-proxy:latest
