@@ -16,7 +16,7 @@ script:
 
 
 after_success:
-  - echo "$dockerhub-pass" | docker login -u "$dockerhub-username" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push ayanf3d3v/udagram-api-feed:v1
   - docker push ayanf3d3v/udagram-api-user:v1
   - docker push ayanf3d3v/udagram-frontend:v1
