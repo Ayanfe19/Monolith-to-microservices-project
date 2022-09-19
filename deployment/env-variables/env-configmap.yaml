@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-config
+data:
+  POSTGRES_HOST: ayanfe-rds.cogevfra2a1y.us-east-1.rds.amazonaws.com
+  POSTGRES_DB: postgres
+  AWS_BUCKET: ayanfe-eks-s3
+  AWS_REGION: us-east-2
+  AWS_PROFILE: my-eks-user2
+  JWT_SECRET: testing
+  URL: http://localhost:8100
+
+
